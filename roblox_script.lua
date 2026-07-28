@@ -38,15 +38,6 @@ local Config = {
     ShowESP = true
 }
 
-local oldIndex
-oldIndex = hookmetamethod(game, "__index", function(self, key)
-    if not checkcaller() and self:IsA("BasePart") and key == "CFrame" then
-        if self.Name == "HumanoidRootPart" and self:IsDescendantOf(LP.Character) then
-            return CFrame.new(self.Position.X, 9999, self.Position.Z)
-        end
-    end
-    return oldIndex(self, key)
-end)
 
 local Remotes = {}
 local function ScanRemotes()
